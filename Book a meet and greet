@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Meet & Greet</title>
+  <link rel="stylesheet" href="style.css"> <!-- reuse your existing CSS -->
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f9f9f9; }
+    h1 { color: #333; text-align: center; }
+    form { max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, textarea { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
+    button { margin-top: 20px; padding: 15px 20px; background-color: blue; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; }
+    button:hover { background-color: darkblue; }
+    .checkbox-group { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Request a Meet & Greet</h1>
+  <p style="text-align:center;">Ready to bring your pup in for daycare? Please complete the form below to schedule your dog's Meet & Greet.</p>
+
+  <form>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" required>
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Phone</label>
+    <input type="tel" id="phone" name="phone" placeholder="(___)-___-____" required>
+
+    <label for="dogName">Dog Name</label>
+    <input type="text" id="dogName" name="dogName" required>
+
+    <label for="additionalDog">Add Another Dog</label>
+    <input type="text" id="additionalDog" name="additionalDog">
+
+    <label for="referral">Referral Code</label>
+    <input type="text" id="referral" name="referral">
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="4"></textarea>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="privacy" name="privacy" required>
+      <label for="privacy">Yes, I agree that Dogtopia may contact me. I have read and agree with the privacy policy.*</label>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="smsPromo" name="smsPromo">
+      <label for="smsPromo">Yes, I would like to receive SMS Messages from Dogtopia Promos including upcoming events and special offers.</label>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="requirements" name="requirements" required>
+      <label for="requirements">I confirm my dog meets the age and health requirements for daycare and boarding.*</label>
+    </div>
+
+    <button type="submit">I'm ready to book my Meet & Greet</button>
+  </form>
+</body>
+</html>
