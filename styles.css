@@ -1,15 +1,24 @@
+/* Make hero full screen and center content */
 .hero {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 50px 20px;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  height: 100vh;           /* full viewport height */
+  background-color: #f0f8ff; /* optional: light background */
+  margin: 0;
 }
 
+/* Brand name style */
 .brand-name {
-  font-size: 7rem;      
+  font-size: 8rem;    /* large */
   font-weight: bold;
-  color: blue;          
-  margin: 0;
+  color: blue;
   text-align: center;
+  margin: 0;
+}
+
+/* Optional: remove default body margin */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
