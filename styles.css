@@ -796,11 +796,23 @@ textarea {
 
   .nav {
     padding: 4px 16px;
+  }
+
+  .nav-links {
+    gap: 6px;
+  }
+
+  .nav-links a {
+    padding: 8px 12px;
+    width: auto;
+  }
+
+  .site-header.nav-compact .nav {
     justify-content: center;
   }
 
-  .brand-lockup,
-  .nav-links {
+  .site-header.nav-compact .brand-lockup,
+  .site-header.nav-compact .nav-links {
     display: none;
   }
 }
