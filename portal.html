@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Parent Portal Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="logo" href="index.html#home" aria-label="Pawsome Care home">
+        <img src="nav-logo.png" alt="Pawsome Care logo">
+        <span class="brand-lockup">
+          <span class="brand-wordmark">Pawsome Care</span>
+          <span class="brand-tag">Davis, California</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#home">Home</a>
+        <a href="gallery.html">Photo Gallery</a>
+        <a href="portal.html">Pet Parent Portal</a>
+        <a href="index.html#service">Services</a>
+        <a href="index.html#contact">Contact Us</a>
+        <a href="about.html">About Us</a>
+        <a class="nav-cta" href="meetandgreet.html">Book A Meet & Greet</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <div class="content-shell">
+      <section class="page-card portal-page">
+        <span class="eyebrow">Pet Parent Portal</span>
+        <h1 class="section-title">Daily pet updates, reimagined as a polished client demo</h1>
+        <p class="section-copy">
+          This portal is a portfolio demo showing how pet parents could log in to view daily updates, care notes, and
+          recent photos for their dog.
+        </p>
+
+        <div class="portal-demo-note">
+          <strong>Demo login</strong>
+          <span>Email: <code>demo@pawsomecare.com</code></span>
+          <span>Password: <code>pawsome123</code></span>
+        </div>
+
+        <div id="portalLogin" class="portal-login">
+          <form id="portalLoginForm" class="form-card portal-form">
+            <div class="field-grid">
+              <div class="field">
+                <label for="portalEmail">Email</label>
+                <input type="email" id="portalEmail" name="portalEmail" placeholder="demo@pawsomecare.com" required>
+              </div>
+              <div class="field">
+                <label for="portalPassword">Password</label>
+                <input type="password" id="portalPassword" name="portalPassword" placeholder="pawsome123" required>
+              </div>
+            </div>
+            <p id="portalError" class="portal-error" hidden>Demo account only. Use the sample email and password above.</p>
+            <button type="submit">Log In to Demo Portal</button>
+          </form>
+        </div>
+
+        <section id="portalDashboard" class="portal-dashboard" hidden>
+          <div class="portal-topbar">
+            <div>
+              <span class="eyebrow">Today’s Update</span>
+              <h2 class="portal-pet-name">Mochi’s Daily Report</h2>
+              <p class="portal-subcopy">Tuesday update for Mochi, shared with the pet parent portal demo.</p>
+            </div>
+            <button id="portalLogout" class="button button-secondary" type="button">Log Out</button>
+          </div>
+
+          <div class="portal-summary-grid">
+            <article class="portal-summary-card">
+              <span class="portal-kicker">Mood</span>
+              <strong>Happy and social</strong>
+              <p>Settled in quickly and stayed playful during the afternoon.</p>
+            </article>
+            <article class="portal-summary-card">
+              <span class="portal-kicker">Meals</span>
+              <strong>Ate breakfast and dinner</strong>
+              <p>Finished meals well and had water refreshed throughout the day.</p>
+            </article>
+            <article class="portal-summary-card">
+              <span class="portal-kicker">Potty</span>
+              <strong>3 successful breaks</strong>
+              <p>No issues noted. Routine stayed normal and on schedule.</p>
+            </article>
+            <article class="portal-summary-card">
+              <span class="portal-kicker">Activity</span>
+              <strong>Play session + walk</strong>
+              <p>Enjoyed supervised play and a calm afternoon walk.</p>
+            </article>
+          </div>
+
+          <div class="portal-detail-grid">
+            <section class="portal-panel">
+              <h3>Care Notes</h3>
+              <ul class="portal-list">
+                <li>Mochi was relaxed at drop-off and greeted other dogs nicely.</li>
+                <li>Took a midday rest break after active play.</li>
+                <li>Showed strong recall and stayed engaged during enrichment time.</li>
+              </ul>
+            </section>
+
+            <section class="portal-panel">
+              <h3>Today’s Snapshot</h3>
+              <img class="portal-photo" src="homepage-dogs.png" alt="Portal demo photo of dogs at Pawsome Care">
+            </section>
+          </div>
+
+          <section class="portal-history">
+            <h3>Recent Updates</h3>
+            <div class="portal-history-grid">
+              <article class="portal-history-card">
+                <span>Mon, Mar 23</span>
+                <strong>Easy arrival and relaxed afternoon</strong>
+                <p>Good appetite, two potty breaks, and a calm evening wind-down.</p>
+              </article>
+              <article class="portal-history-card">
+                <span>Sun, Mar 22</span>
+                <strong>Playful day with enrichment time</strong>
+                <p>Enjoyed toy rotation, rest time, and a short walk before pickup.</p>
+              </article>
+              <article class="portal-history-card">
+                <span>Sat, Mar 21</span>
+                <strong>Boarding check-in demo</strong>
+                <p>Comfortable overnight setup, normal meals, and smooth bedtime routine.</p>
+              </article>
+            </div>
+          </section>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const demoEmail = "demo@pawsomecare.com";
+      const demoPassword = "pawsome123";
+      const form = document.getElementById("portalLoginForm");
+      const error = document.getElementById("portalError");
+      const login = document.getElementById("portalLogin");
+      const dashboard = document.getElementById("portalDashboard");
+      const logout = document.getElementById("portalLogout");
+
+      function showDashboard() {
+        login.hidden = true;
+        dashboard.hidden = false;
+        error.hidden = true;
+      }
+
+      function showLogin() {
+        dashboard.hidden = true;
+        login.hidden = false;
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const email = document.getElementById("portalEmail").value.trim().toLowerCase();
+        const password = document.getElementById("portalPassword").value;
+
+        if (email === demoEmail && password === demoPassword) {
+          showDashboard();
+        } else {
+          error.hidden = false;
+        }
+      });
+
+      logout.addEventListener("click", function () {
+        form.reset();
+        showLogin();
+      });
+    })();
+  </script>
+</body>
+</html>
