@@ -334,6 +334,32 @@ button:focus-visible {
   line-height: 1.7;
 }
 
+.about-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.about-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: #fffdf9;
+  border: 1px solid rgba(111, 98, 86, 0.15);
+  box-shadow: var(--shadow);
+}
+
+.about-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+}
+
+.about-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .services-grid {
   margin-top: 28px;
   display: grid;
@@ -415,6 +441,18 @@ button:focus-visible {
 
 .contact-card strong {
   font-size: 1.2rem;
+}
+
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(215, 122, 97, 0.12);
+  color: var(--brand-dark);
+  font-size: 1.1rem;
 }
 
 .contact-label {
@@ -552,6 +590,7 @@ textarea {
   }
 
   .services-grid,
+  .about-grid,
   .gallery-grid,
   .contact-grid {
     grid-template-columns: 1fr;
