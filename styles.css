@@ -402,6 +402,13 @@ button:focus-visible {
   gap: 8px;
 }
 
+.hidden-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .field-full {
   grid-column: 1 / -1;
 }
