@@ -54,90 +54,13 @@ a {
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  letter-spacing: 0.04em;
   text-decoration: none;
 }
 
-.logo-mark {
-  position: relative;
-  width: 52px;
-  height: 52px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #fff7ee 0%, #fde9dc 100%);
-  color: var(--brand-dark);
-  border: 1px solid rgba(215, 122, 97, 0.18);
-  box-shadow: 0 12px 22px rgba(159, 78, 56, 0.14);
-}
-
-.logo-p {
-  position: relative;
-  z-index: 1;
-  font-size: 2rem;
-  line-height: 1;
-  font-weight: 900;
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-.paw {
-  position: absolute;
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
-  border-radius: 999px;
-}
-
-.paw-pad {
-  width: 15px;
-  height: 12px;
-  right: 8px;
-  bottom: 11px;
-  transform: rotate(-12deg);
-}
-
-.paw-toe {
-  width: 7px;
-  height: 9px;
-}
-
-.paw-toe-1 {
-  right: 10px;
-  top: 11px;
-  transform: rotate(-12deg);
-}
-
-.paw-toe-2 {
-  right: 18px;
-  top: 7px;
-  transform: rotate(6deg);
-}
-
-.paw-toe-3 {
-  right: 25px;
-  top: 11px;
-  transform: rotate(18deg);
-}
-
-.logo-text {
-  display: grid;
-  gap: 2px;
-}
-
-.logo-name {
-  font-size: 1.2rem;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-.logo-subtitle {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
+.logo img {
+  display: block;
+  width: clamp(150px, 18vw, 210px);
+  height: auto;
 }
 
 .nav-links {
