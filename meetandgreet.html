@@ -40,57 +40,57 @@
             <input class="hidden-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
             <div class="field-grid">
               <div class="field">
-                <label for="firstName">First Name</label>
+                <label for="firstName">First Name *</label>
                 <input type="text" id="firstName" name="firstName" required>
               </div>
 
               <div class="field">
-                <label for="lastName">Last Name</label>
+                <label for="lastName">Last Name *</label>
                 <input type="text" id="lastName" name="lastName" required>
               </div>
 
               <div class="field">
-                <label for="email">Email</label>
+                <label for="email">Email *</label>
                 <input type="email" id="email" name="email" required>
               </div>
 
               <div class="field">
-                <label for="phone">Phone</label>
+                <label for="phone">Phone *</label>
                 <input type="tel" id="phone" name="phone" placeholder="(___)-___-____" required>
               </div>
 
               <div class="field">
-                <label for="dogName">Dog Name</label>
+                <label for="dogName">Dog Name *</label>
                 <input type="text" id="dogName" name="dogName" required>
               </div>
 
               <div class="field">
-                <label for="dogAge">Dog Age</label>
+                <label for="dogAge">Dog Age *</label>
                 <input type="text" id="dogAge" name="dogAge" placeholder="For example: 2 years old" required>
               </div>
 
               <div class="field">
-                <label for="breed">Breed</label>
+                <label for="breed">Breed *</label>
                 <input type="text" id="breed" name="breed" required>
               </div>
 
-              <div class="field">
-                <label for="preferredDate">Preferred Meet & Greet Date</label>
-                <input type="date" id="preferredDate" name="preferredDate" required>
+              <div class="field field-full">
+                <label for="preferredDates">Preferred Meet & Greet Dates *</label>
+                <textarea id="preferredDates" name="preferredDates" rows="3" placeholder="List one or more dates that work for you. Example: April 2, April 4, or April 6 after 3 PM." required></textarea>
               </div>
 
               <div class="field">
-                <label for="vaccinationStatus">Vaccination Status</label>
+                <label for="vaccinationStatus">Vaccination Status *</label>
                 <input type="text" id="vaccinationStatus" name="vaccinationStatus" placeholder="Up to date, Rabies, DHPP, Bordetella" required>
               </div>
 
               <div class="field">
-                <label for="additionalDog">Add Another Dog</label>
+                <label for="additionalDog">Add Another Dog (Optional)</label>
                 <input type="text" id="additionalDog" name="additionalDog">
               </div>
 
               <div class="field">
-                <label for="referral">Referral Code</label>
+                <label for="referral">Referral Code (Optional)</label>
                 <input type="text" id="referral" name="referral">
               </div>
 
@@ -100,7 +100,7 @@
               </div>
 
               <div class="field field-full">
-                <label for="message">Message</label>
+                <label for="message">Message (Optional)</label>
                 <textarea id="message" name="message" rows="4"></textarea>
               </div>
             </div>
