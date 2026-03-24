@@ -93,6 +93,9 @@ a {
 }
 
 .nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   padding: 10px 16px;
   border-radius: 999px;
