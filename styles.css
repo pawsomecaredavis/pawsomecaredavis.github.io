@@ -631,16 +631,11 @@ textarea {
 
   .nav {
     padding: 4px 16px;
+    justify-content: center;
   }
 
+  .brand-lockup,
   .nav-links {
-    gap: 8px;
-  }
-
-  .nav-links a,
-  .button,
-  button {
-    width: 100%;
-    text-align: center;
+    display: none;
   }
 }
