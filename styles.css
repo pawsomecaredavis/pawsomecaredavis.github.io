@@ -52,10 +52,44 @@ a {
 }
 
 .logo {
-  font-size: 1.2rem;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   letter-spacing: 0.04em;
   text-decoration: none;
+}
+
+.logo-mark {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  box-shadow: 0 12px 22px rgba(159, 78, 56, 0.2);
+}
+
+.logo-text {
+  display: grid;
+  gap: 2px;
+}
+
+.logo-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .nav-links {
@@ -436,6 +470,10 @@ textarea {
   .nav {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .logo {
+    justify-content: center;
   }
 
   .nav-links {
