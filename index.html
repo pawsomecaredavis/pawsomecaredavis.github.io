@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -134,19 +134,19 @@
         </div>
       </section>
 
-      <section class="page-card" id="reviews">
+            <section class="page-card" id="reviews">
         <span class="eyebrow">Client Reviews</span>
         <h2 class="section-title">Kind words from pet parents</h2>
         <p class="section-copy">
-          A few highlights from past clients who trusted Pawsome Care with boarding, house sitting, and daily updates.
+          A few highlights from past clients who trusted Pawsome Care with boarding, house sitting, and consistent daily updates.
         </p>
         <div class="reviews-carousel" aria-label="Client reviews carousel">
-          <button class="review-arrow review-arrow-left" type="button" aria-label="Previous review">‹</button>
+          <button class="review-arrow review-arrow-left" type="button" aria-label="Previous review">&#8249;</button>
           <div class="reviews-track" id="reviewsTrack">
             <article class="review-card">
               <p class="review-text">
-                “Jiajie was incredibly attentive, sent frequent photo and video updates, and made the entire stay feel
-                easy and reassuring. My puppy came home happy, relaxed, and clearly well cared for.”
+                &ldquo;Jiajie was incredibly attentive, sent frequent photo and video updates, and made the entire stay feel
+                easy and reassuring. My puppy came home happy, relaxed, and clearly well cared for.&rdquo;
               </p>
               <div class="review-meta">
                 <strong>Yujun P.</strong>
@@ -156,8 +156,8 @@
 
             <article class="review-card">
               <p class="review-text">
-                “She was thoughtful and observant, even finding a gentle way to help my dog eat comfortably. The regular
-                updates gave me real peace of mind, and I always felt my dog was safe and happy.”
+                &ldquo;She was thoughtful and observant, even finding a gentle way to help my dog eat comfortably. The regular
+                updates gave me real peace of mind, and I always felt my dog was safe and happy.&rdquo;
               </p>
               <div class="review-meta">
                 <strong>Elmira A.</strong>
@@ -167,8 +167,8 @@
 
             <article class="review-card">
               <p class="review-text">
-                “Communication was top-notch while we were away, and our puppy had a fantastic time. The care felt
-                genuinely warm, dependable, and easy to trust from start to finish.”
+                &ldquo;Communication was top-notch while we were away, and our puppy had a fantastic time. The care felt
+                genuinely warm, dependable, and easy to trust from start to finish.&rdquo;
               </p>
               <div class="review-meta">
                 <strong>Janette M.</strong>
@@ -178,8 +178,8 @@
 
             <article class="review-card">
               <p class="review-text">
-                “She really paid attention to my dog’s habits, preferences, and comfort. The steady stream of photos and
-                messages made it feel like my dog was on a little vacation of his own.”
+                &ldquo;She really paid attention to my dog&rsquo;s habits, preferences, and comfort. The steady stream of photos and
+                messages made it feel like my dog was on a little vacation of his own.&rdquo;
               </p>
               <div class="review-meta">
                 <strong>Yudi M.</strong>
@@ -189,8 +189,8 @@
 
             <article class="review-card">
               <p class="review-text">
-                “Even with shy dogs, she stayed patient, nurturing, and communicative. The updates were detailed, the
-                dogs looked comfortable, and the overall experience felt caring and professional.”
+                &ldquo;Even with shy dogs, she stayed patient, nurturing, and communicative. The updates were detailed, the
+                dogs looked comfortable, and the overall experience felt caring and professional.&rdquo;
               </p>
               <div class="review-meta">
                 <strong>Stephanie S.</strong>
@@ -198,10 +198,10 @@
               </div>
             </article>
           </div>
-          <button class="review-arrow review-arrow-right" type="button" aria-label="Next review">›</button>
+          <button class="review-arrow review-arrow-right" type="button" aria-label="Next review">&#8250;</button>
         </div>
+        <div class="review-dots" id="reviewDots" aria-label="Review pagination"></div>
       </section>
-
       <section class="page-card" id="contact">
         <span class="eyebrow">Contact Us</span>
         <h2 class="section-title">Get in touch with Pawsome Care</h2>
@@ -241,14 +241,31 @@
       <p class="footer-location">Located in Davis, CA</p>
     </div>
   </footer>
-  <script>
+    <script>
     (() => {
       const track = document.getElementById("reviewsTrack");
-      if (!track) return;
+      const dotsRoot = document.getElementById("reviewDots");
+      if (!track || !dotsRoot) return;
 
       const cards = Array.from(track.querySelectorAll(".review-card"));
+      const previousButton = document.querySelector(".review-arrow-left");
+      const nextButton = document.querySelector(".review-arrow-right");
       let index = 0;
       let intervalId;
+      let touchStartX = 0;
+
+      const dots = cards.map((_, dotIndex) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "review-dot";
+        dot.setAttribute("aria-label", `Go to review ${dotIndex + 1}`);
+        dot.addEventListener("click", () => {
+          goTo(dotIndex);
+          startAutoPlay();
+        });
+        dotsRoot.appendChild(dot);
+        return dot;
+      });
 
       function cardWidth() {
         const first = cards[0];
@@ -258,6 +275,14 @@
         return first.getBoundingClientRect().width + gap;
       }
 
+      function updateDots() {
+        dots.forEach((dot, dotIndex) => {
+          const isActive = dotIndex === index;
+          dot.classList.toggle("is-active", isActive);
+          dot.setAttribute("aria-current", isActive ? "true" : "false");
+        });
+      }
+
       function goTo(newIndex) {
         if (!cards.length) return;
         index = (newIndex + cards.length) % cards.length;
@@ -265,34 +290,52 @@
           left: cardWidth() * index,
           behavior: "smooth"
         });
+        updateDots();
       }
 
       function startAutoPlay() {
         stopAutoPlay();
-        intervalId = window.setInterval(() => goTo(index + 1), 3500);
+        intervalId = window.setInterval(() => goTo(index + 1), 4200);
       }
 
       function stopAutoPlay() {
-        if (intervalId) window.clearInterval(intervalId);
+        if (intervalId) {
+          window.clearInterval(intervalId);
+          intervalId = undefined;
+        }
       }
 
-      document.querySelector(".review-arrow-left")?.addEventListener("click", () => {
+      previousButton?.addEventListener("click", () => {
         goTo(index - 1);
         startAutoPlay();
       });
 
-      document.querySelector(".review-arrow-right")?.addEventListener("click", () => {
+      nextButton?.addEventListener("click", () => {
         goTo(index + 1);
         startAutoPlay();
       });
 
       track.addEventListener("mouseenter", stopAutoPlay);
       track.addEventListener("mouseleave", startAutoPlay);
+      track.addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0]?.clientX || 0;
+        stopAutoPlay();
+      }, { passive: true });
+      track.addEventListener("touchend", (event) => {
+        const touchEndX = event.changedTouches[0]?.clientX || 0;
+        const deltaX = touchStartX - touchEndX;
+        if (Math.abs(deltaX) > 35) {
+          goTo(index + (deltaX > 0 ? 1 : -1));
+        }
+        startAutoPlay();
+      }, { passive: true });
       window.addEventListener("resize", () => goTo(index));
 
+      updateDots();
       startAutoPlay();
     })();
   </script>
   <script src="nav.js"></script>
 </body>
 </html>
+
