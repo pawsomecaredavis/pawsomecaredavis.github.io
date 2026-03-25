@@ -680,6 +680,44 @@ button:focus-visible {
   line-height: 1.7;
 }
 
+.availability-card {
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 24px;
+  background: #fffdf9;
+  border: 1px solid rgba(111, 98, 86, 0.15);
+  box-shadow: var(--shadow);
+}
+
+.availability-head {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.availability-head .eyebrow {
+  margin: 0;
+}
+
+.availability-head h3 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.availability-frame {
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(111, 98, 86, 0.14);
+  background: #fff;
+}
+
+.availability-frame iframe {
+  display: block;
+  width: 100%;
+  min-height: 620px;
+  border: 0;
+}
+
 .contact-grid {
   margin-top: 28px;
   display: grid;
@@ -922,6 +960,10 @@ textarea {
     width: auto;
   }
 
+  .availability-frame iframe {
+    min-height: 520px;
+  }
+
   .site-header.nav-compact .nav {
     justify-content: center;
   }
@@ -931,6 +973,8 @@ textarea {
     display: none;
   }
 }
+
+
 
 
 
