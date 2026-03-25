@@ -716,6 +716,10 @@ button:focus-visible {
   backdrop-filter: blur(4px);
 }
 
+.modal-backdrop[hidden] {
+  display: none;
+}
+
 .modal-card {
   width: min(560px, 100%);
   padding: 18px 18px 16px;
