@@ -391,6 +391,24 @@
 
       let currentIndex = 0;
 
+      function getMonthDate(month) {
+        const [monthName, yearText] = month.label.split(" ");
+        return new Date(`${monthName} 1, ${yearText}`);
+      }
+
+      function isPastDate(month, day) {
+        const monthDate = getMonthDate(month);
+        const today = new Date();
+        const current = new Date(
+          monthDate.getFullYear(),
+          monthDate.getMonth(),
+          day
+        );
+        current.setHours(0, 0, 0, 0);
+        today.setHours(0, 0, 0, 0);
+        return current < today;
+      }
+
       function renderMonth() {
         const month = months[currentIndex];
         monthLabel.textContent = month.label;
@@ -407,7 +425,7 @@
           const dayCell = document.createElement("span");
           dayCell.className = "availability-day";
           dayCell.textContent = String(day);
-          if (month.available.includes(day)) {
+          if (month.available.includes(day) && !isPastDate(month, day)) {
             dayCell.classList.add("is-available");
             dayCell.setAttribute("aria-label", `${month.label} ${day} available`);
           } else {
