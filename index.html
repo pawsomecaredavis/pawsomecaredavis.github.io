@@ -135,10 +135,33 @@
         <div class="availability-card" id="availability">
           <div class="availability-head">
             <span class="eyebrow">Availability</span>
-            <h3>Current calendar</h3>
+            <div class="availability-toolbar">
+              <h3 id="availabilityMonth">March 2026</h3>
+              <div class="availability-controls" aria-label="Calendar month controls">
+                <button class="availability-nav" id="availabilityPrev" type="button" aria-label="Previous month">&#8249;</button>
+                <button class="availability-nav" id="availabilityNext" type="button" aria-label="Next month">&#8250;</button>
+              </div>
+            </div>
           </div>
-          <div class="availability-frame">
-            <iframe src="https://calendar.google.com/calendar/embed?src=f2a551ce46e704fdfe80c2b6431dd8e529ad1b2583eef17ca9485e1d26a9fb5f%40group.calendar.google.com&ctz=America%2FLos_Angeles" title="Pawsome Care availability calendar" frameborder="0" scrolling="no"></iframe>
+          <div class="availability-legend" aria-label="Availability legend">
+            <span><i class="availability-swatch availability-swatch-open"></i>Available</span>
+            <span><i class="availability-swatch availability-swatch-closed"></i>Not available</span>
+          </div>
+          <div class="availability-calendar" aria-live="polite">
+            <div class="availability-weekdays" aria-hidden="true">
+              <span>S</span>
+              <span>M</span>
+              <span>T</span>
+              <span>W</span>
+              <span>T</span>
+              <span>F</span>
+              <span>S</span>
+            </div>
+            <div class="availability-grid" id="availabilityGrid"></div>
+          </div>
+          <div class="availability-updated">
+            <span class="availability-check">&#10003;</span>
+            <span id="availabilityUpdated">Calendar last updated recently</span>
           </div>
         </div>
       </section>
@@ -250,7 +273,7 @@
       <p class="footer-location">Located in Davis, CA</p>
     </div>
   </footer>
-    <script>
+  <script>
     (() => {
       const track = document.getElementById("reviewsTrack");
       const dotsRoot = document.getElementById("reviewDots");
@@ -342,6 +365,70 @@
 
       updateDots();
       startAutoPlay();
+    })();
+  </script>
+  <script>
+    (async () => {
+      const monthLabel = document.getElementById("availabilityMonth");
+      const grid = document.getElementById("availabilityGrid");
+      const previousButton = document.getElementById("availabilityPrev");
+      const nextButton = document.getElementById("availabilityNext");
+      const updatedLabel = document.getElementById("availabilityUpdated");
+      if (!monthLabel || !grid || !previousButton || !nextButton || !updatedLabel) return;
+
+      let months = [];
+      try {
+        const response = await fetch("availability.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("Unable to load availability data");
+        const data = await response.json();
+        months = Array.isArray(data.months) ? data.months : [];
+        updatedLabel.textContent = `Calendar last updated ${data.lastUpdated || "recently"}`;
+      } catch (error) {
+        updatedLabel.textContent = "Calendar update unavailable";
+      }
+
+      if (!months.length) return;
+
+      let currentIndex = 0;
+
+      function renderMonth() {
+        const month = months[currentIndex];
+        monthLabel.textContent = month.label;
+        grid.innerHTML = "";
+
+        for (let i = 0; i < month.startDay; i += 1) {
+          const emptyCell = document.createElement("span");
+          emptyCell.className = "availability-day availability-day-empty";
+          emptyCell.setAttribute("aria-hidden", "true");
+          grid.appendChild(emptyCell);
+        }
+
+        for (let day = 1; day <= month.totalDays; day += 1) {
+          const dayCell = document.createElement("span");
+          dayCell.className = "availability-day";
+          dayCell.textContent = String(day);
+          if (month.available.includes(day)) {
+            dayCell.classList.add("is-available");
+            dayCell.setAttribute("aria-label", `${month.label} ${day} available`);
+          } else {
+            dayCell.classList.add("is-unavailable");
+            dayCell.setAttribute("aria-label", `${month.label} ${day} not available`);
+          }
+          grid.appendChild(dayCell);
+        }
+      }
+
+      previousButton.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + months.length) % months.length;
+        renderMonth();
+      });
+
+      nextButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % months.length;
+        renderMonth();
+      });
+
+      renderMonth();
     })();
   </script>
   <script src="nav.js"></script>
