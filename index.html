@@ -128,8 +128,8 @@
         <div class="rates-note">
           <h3>Additional Rates</h3>
           <p>Second dog is 30% off the base rate for the same booking.</p>
-          <p>Holiday rates add $20 per night for daycare, boarding, and house sitting bookings.</p>
-          <p>Holiday rates add $5 for dog walking and pet drop-in visits.</p>
+          <p>Holiday rates <button class="inline-info" type="button" id="holidayRatesOpen" aria-label="View holiday rate dates">!</button> add $20 per night for daycare, boarding, and house sitting bookings.</p>
+          <p>Holiday rates <button class="inline-info" type="button" id="holidayRatesOpenSecondary" aria-label="View holiday rate dates">!</button> add $5 for dog walking and pet drop-in visits.</p>
         </div>
 
         <div class="availability-card" id="availability">
@@ -165,6 +165,30 @@
           </div>
         </div>
       </section>
+
+      <div class="modal-backdrop" id="holidayRatesModal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="holidayRatesTitle">
+          <div class="modal-header">
+            <button class="modal-back" type="button" id="holidayRatesCloseTop" aria-label="Close holiday rates">&#8592;</button>
+            <h2 id="holidayRatesTitle">Holiday Rate</h2>
+          </div>
+          <div class="modal-body">
+            <p>
+              Due to the high demand for pet-sitting services during the holiday season, stays that include any of the
+              following dates will be priced at the holiday rate:
+            </p>
+            <ul class="modal-list">
+              <li>May 22-25, 2026</li>
+              <li>Jun 19-21, 2026</li>
+              <li>Jul 3-5, 2026</li>
+              <li>Sep 4-7, 2026</li>
+              <li>Nov 26-29, 2026</li>
+              <li>Dec 24, 2026 - Jan 3, 2027</li>
+            </ul>
+          </div>
+          <button class="modal-close" type="button" id="holidayRatesCloseBottom">Close</button>
+        </div>
+      </div>
 
             <section class="page-card" id="reviews">
         <span class="eyebrow">Client Reviews</span>
@@ -447,6 +471,50 @@
       });
 
       renderMonth();
+    })();
+  </script>
+  <script>
+    (() => {
+      const modal = document.getElementById("holidayRatesModal");
+      const openButtons = [
+        document.getElementById("holidayRatesOpen"),
+        document.getElementById("holidayRatesOpenSecondary")
+      ].filter(Boolean);
+      const closeButtons = [
+        document.getElementById("holidayRatesCloseTop"),
+        document.getElementById("holidayRatesCloseBottom")
+      ].filter(Boolean);
+      if (!modal || !openButtons.length || !closeButtons.length) return;
+
+      function openModal() {
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+      }
+
+      openButtons.forEach((button) => {
+        button.addEventListener("click", openModal);
+      });
+
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", closeModal);
+      });
+
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !modal.hidden) {
+          closeModal();
+        }
+      });
     })();
   </script>
   <script src="nav.js"></script>
