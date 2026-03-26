@@ -94,8 +94,8 @@
 
           <article class="service-card">
             <div class="service-head">
-              <h3>Dog Walking <button class="inline-info" type="button" id="extendedRatesOpenWalking" aria-label="View dog walking extended rates">!</button></h3>
-              <span class="service-price">$25/walk</span>
+              <h3>Dog Walking</h3>
+              <span class="service-price">$25/walk <button class="inline-info service-info" type="button" id="extendedRatesOpenWalking" aria-label="View dog walking extended rates">!</button></span>
             </div>
             <p>
               Reliable 30-minute neighborhood walks focused on exercise, enrichment, and consistency for dogs who need
@@ -105,8 +105,8 @@
 
           <article class="service-card">
             <div class="service-head">
-              <h3>Pet Drop-In <button class="inline-info" type="button" id="extendedRatesOpenDropIn" aria-label="View pet drop-in extended rates">!</button></h3>
-              <span class="service-price">$25/visit</span>
+              <h3>Pet Drop-In</h3>
+              <span class="service-price">$25/visit <button class="inline-info service-info" type="button" id="extendedRatesOpenDropIn" aria-label="View pet drop-in extended rates">!</button></span>
             </div>
             <p>
               Quick but attentive 30-minute home visits for feeding, potty breaks, water refresh, medication routines,
@@ -185,20 +185,35 @@
         </div>
       </div>
 
-      <div class="modal-backdrop" id="extendedRatesModal" hidden>
-        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="extendedRatesTitle">
+      <div class="modal-backdrop" id="walkingRatesModal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="walkingRatesTitle">
           <div class="modal-header">
-            <button class="modal-back" type="button" id="extendedRatesCloseTop" aria-label="Close extended rates">&#8592;</button>
-            <h2 id="extendedRatesTitle">Extended Visit Rates</h2>
+            <button class="modal-back" type="button" id="walkingRatesCloseTop" aria-label="Close dog walking rates">&#8592;</button>
+            <h2 id="walkingRatesTitle">Dog Walking Rates</h2>
           </div>
           <div class="modal-body">
-            <p>Standard dog walking and pet drop-in bookings are 30 minutes. Longer sessions are also available:</p>
+            <p>Standard dog walking bookings are 30 minutes. Longer sessions are also available:</p>
             <div class="modal-rates">
               <p>Dog Walking: 60 minutes for $40</p>
+            </div>
+          </div>
+          <button class="modal-close" type="button" id="walkingRatesCloseBottom">Close</button>
+        </div>
+      </div>
+
+      <div class="modal-backdrop" id="dropInRatesModal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="dropInRatesTitle">
+          <div class="modal-header">
+            <button class="modal-back" type="button" id="dropInRatesCloseTop" aria-label="Close pet drop-in rates">&#8592;</button>
+            <h2 id="dropInRatesTitle">Pet Drop-In Rates</h2>
+          </div>
+          <div class="modal-body">
+            <p>Standard pet drop-in bookings are 30 minutes. Longer sessions are also available:</p>
+            <div class="modal-rates">
               <p>Pet Drop-In: 60 minutes for $40</p>
             </div>
           </div>
-          <button class="modal-close" type="button" id="extendedRatesCloseBottom">Close</button>
+          <button class="modal-close" type="button" id="dropInRatesCloseBottom">Close</button>
         </div>
       </div>
 
@@ -539,44 +554,53 @@
   </script>
   <script>
     (() => {
-      const modal = document.getElementById("extendedRatesModal");
-      const openButtons = [
-        document.getElementById("extendedRatesOpenWalking"),
-        document.getElementById("extendedRatesOpenDropIn")
-      ].filter(Boolean);
-      const closeButtons = [
-        document.getElementById("extendedRatesCloseTop"),
-        document.getElementById("extendedRatesCloseBottom")
-      ].filter(Boolean);
-      if (!modal || !openButtons.length || !closeButtons.length) return;
+      const modalConfigs = [
+        {
+          modal: document.getElementById("walkingRatesModal"),
+          open: document.getElementById("extendedRatesOpenWalking"),
+          closeTop: document.getElementById("walkingRatesCloseTop"),
+          closeBottom: document.getElementById("walkingRatesCloseBottom")
+        },
+        {
+          modal: document.getElementById("dropInRatesModal"),
+          open: document.getElementById("extendedRatesOpenDropIn"),
+          closeTop: document.getElementById("dropInRatesCloseTop"),
+          closeBottom: document.getElementById("dropInRatesCloseBottom")
+        }
+      ].filter((config) => config.modal && config.open && config.closeTop && config.closeBottom);
 
-      function openModal() {
+      if (!modalConfigs.length) return;
+
+      function openModal(modal) {
         modal.hidden = false;
         document.body.classList.add("modal-open");
       }
 
-      function closeModal() {
+      function closeModal(modal) {
         modal.hidden = true;
-        document.body.classList.remove("modal-open");
+        if (!modalConfigs.some((config) => !config.modal.hidden)) {
+          document.body.classList.remove("modal-open");
+        }
       }
 
-      openButtons.forEach((button) => {
-        button.addEventListener("click", openModal);
-      });
-
-      closeButtons.forEach((button) => {
-        button.addEventListener("click", closeModal);
-      });
-
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          closeModal();
-        }
+      modalConfigs.forEach((config) => {
+        config.open.addEventListener("click", () => openModal(config.modal));
+        config.closeTop.addEventListener("click", () => closeModal(config.modal));
+        config.closeBottom.addEventListener("click", () => closeModal(config.modal));
+        config.modal.addEventListener("click", (event) => {
+          if (event.target === config.modal) {
+            closeModal(config.modal);
+          }
+        });
       });
 
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && !modal.hidden) {
-          closeModal();
+        if (event.key === "Escape") {
+          modalConfigs.forEach((config) => {
+            if (!config.modal.hidden) {
+              closeModal(config.modal);
+            }
+          });
         }
       });
     })();
