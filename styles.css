@@ -682,22 +682,31 @@ button:focus-visible {
 }
 
 .inline-info {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   padding: 0;
-  margin: 0 4px;
+  margin: 0 0 0 6px;
+  border: 1px solid rgba(159, 78, 56, 0.35);
   border-radius: 999px;
-  background: rgba(215, 122, 97, 0.12);
+  background: #fff7f2;
   color: var(--brand-dark);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
+  font-weight: 700;
   line-height: 1;
   box-shadow: none;
+  vertical-align: middle;
 }
 
 .inline-info:hover,
 .inline-info:focus-visible {
   transform: none;
-  background: rgba(215, 122, 97, 0.22);
+  background: rgba(215, 122, 97, 0.18);
+}
+
+.service-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-open {
