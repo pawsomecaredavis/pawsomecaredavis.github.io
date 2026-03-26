@@ -94,23 +94,23 @@
 
           <article class="service-card">
             <div class="service-head">
-              <h3>Dog Walking</h3>
+              <h3>Dog Walking <button class="inline-info" type="button" id="extendedRatesOpenWalking" aria-label="View dog walking extended rates">!</button></h3>
               <span class="service-price">$25/walk</span>
             </div>
             <p>
               Reliable 30-minute neighborhood walks focused on exercise, enrichment, and consistency for dogs who need
-              a midday break or extra movement. 60-minute walks are available for $40.
+              a midday break or extra movement.
             </p>
           </article>
 
           <article class="service-card">
             <div class="service-head">
-              <h3>Pet Drop-In</h3>
+              <h3>Pet Drop-In <button class="inline-info" type="button" id="extendedRatesOpenDropIn" aria-label="View pet drop-in extended rates">!</button></h3>
               <span class="service-price">$25/visit</span>
             </div>
             <p>
               Quick but attentive 30-minute home visits for feeding, potty breaks, water refresh, medication routines,
-              and check-ins while you are away. 60-minute visits are available for $40.
+              and check-ins while you are away.
             </p>
           </article>
 
@@ -182,6 +182,23 @@
             </div>
           </div>
           <button class="modal-close" type="button" id="holidayRatesCloseBottom">Close</button>
+        </div>
+      </div>
+
+      <div class="modal-backdrop" id="extendedRatesModal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="extendedRatesTitle">
+          <div class="modal-header">
+            <button class="modal-back" type="button" id="extendedRatesCloseTop" aria-label="Close extended rates">&#8592;</button>
+            <h2 id="extendedRatesTitle">Extended Visit Rates</h2>
+          </div>
+          <div class="modal-body">
+            <p>Standard dog walking and pet drop-in bookings are 30 minutes. Longer sessions are also available:</p>
+            <div class="modal-rates">
+              <p>Dog Walking: 60 minutes for $40</p>
+              <p>Pet Drop-In: 60 minutes for $40</p>
+            </div>
+          </div>
+          <button class="modal-close" type="button" id="extendedRatesCloseBottom">Close</button>
         </div>
       </div>
 
@@ -486,6 +503,50 @@
       const closeButtons = [
         document.getElementById("holidayRatesCloseTop"),
         document.getElementById("holidayRatesCloseBottom")
+      ].filter(Boolean);
+      if (!modal || !openButtons.length || !closeButtons.length) return;
+
+      function openModal() {
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+      }
+
+      openButtons.forEach((button) => {
+        button.addEventListener("click", openModal);
+      });
+
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", closeModal);
+      });
+
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !modal.hidden) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const modal = document.getElementById("extendedRatesModal");
+      const openButtons = [
+        document.getElementById("extendedRatesOpenWalking"),
+        document.getElementById("extendedRatesOpenDropIn")
+      ].filter(Boolean);
+      const closeButtons = [
+        document.getElementById("extendedRatesCloseTop"),
+        document.getElementById("extendedRatesCloseBottom")
       ].filter(Boolean);
       if (!modal || !openButtons.length || !closeButtons.length) return;
 
