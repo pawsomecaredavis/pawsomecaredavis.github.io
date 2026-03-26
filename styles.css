@@ -92,6 +92,12 @@ a {
   flex-wrap: wrap;
 }
 
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 .nav-links a {
   display: inline-flex;
   align-items: center;
@@ -100,6 +106,38 @@ a {
   padding: 10px 16px;
   border-radius: 999px;
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 180px;
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(251, 247, 241, 0.98);
+  border: 1px solid rgba(111, 98, 86, 0.14);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav-dropdown-menu a {
+  justify-content: flex-start;
+  padding: 10px 12px;
+  border-radius: 14px;
+  white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -619,6 +657,18 @@ button:focus-visible {
   line-height: 1.7;
 }
 
+.team-section {
+  margin-top: 34px;
+  display: grid;
+  gap: 18px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
 .services-grid {
   margin-top: 28px;
   display: grid;
@@ -1131,6 +1181,10 @@ textarea {
     justify-content: center;
   }
 
+  .nav-dropdown {
+    justify-content: center;
+  }
+
   .hero-card,
   .page-card,
   .form-card {
@@ -1147,6 +1201,7 @@ textarea {
 
   .services-grid,
   .about-grid,
+  .team-grid,
   .gallery-grid,
   .portal-summary-grid,
   .portal-history-grid,
@@ -1203,6 +1258,10 @@ textarea {
   .nav-links a {
     padding: 8px 12px;
     width: auto;
+  }
+
+  .nav-dropdown-menu {
+    display: none;
   }
 
   .availability-toolbar {
