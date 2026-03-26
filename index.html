@@ -118,8 +118,7 @@
         <div class="rates-note">
           <h3>Additional Rates</h3>
           <p>Second dog is 30% off the base rate for the same booking.</p>
-          <p>Holiday rates <button class="inline-info" type="button" id="holidayRatesOpen" aria-label="View holiday rate dates">!</button> add $20 per night for daycare, boarding, and house sitting bookings.</p>
-          <p>Holiday rates <button class="inline-info" type="button" id="holidayRatesOpenSecondary" aria-label="View holiday rate dates">!</button> add $5 for dog walking and pet drop-in visits.</p>
+          <p>Holiday rates <button class="inline-info" type="button" id="holidayRatesOpen" aria-label="View holiday rate details">!</button></p>
         </div>
 
         <div class="availability-card" id="availability">
@@ -175,6 +174,12 @@
               <li>Nov 26-29, 2026</li>
               <li>Dec 24, 2026 - Jan 3, 2027</li>
             </ul>
+            <div class="modal-rates">
+              <p>Daycare: $64/day</p>
+              <p>Boarding: $87/night</p>
+              <p>Dog Walking: $30/walk</p>
+              <p>Pet Drop-In: $30/visit</p>
+            </div>
           </div>
           <button class="modal-close" type="button" id="holidayRatesCloseBottom">Close</button>
         </div>
@@ -477,10 +482,7 @@
   <script>
     (() => {
       const modal = document.getElementById("holidayRatesModal");
-      const openButtons = [
-        document.getElementById("holidayRatesOpen"),
-        document.getElementById("holidayRatesOpenSecondary")
-      ].filter(Boolean);
+      const openButtons = [document.getElementById("holidayRatesOpen")].filter(Boolean);
       const closeButtons = [
         document.getElementById("holidayRatesCloseTop"),
         document.getElementById("holidayRatesCloseBottom")
