@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pawsome Care Services</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="logo" href="index.html#home" aria-label="Pawsome Care home">
+        <img src="nav-logo.png" alt="Pawsome Care logo">
+        <span class="brand-lockup">
+          <span class="brand-wordmark">Pawsome Care</span>
+          <span class="brand-tag">Davis, California</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#home">Home</a>
+        <a href="gallery.html">Photo Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="index.html#contact">Contact Us</a>
+        <div class="nav-dropdown">
+          <a href="about.html">About Us</a>
+          <div class="nav-dropdown-menu">
+            <a href="about.html#mission">Our Mission</a>
+            <a href="about.html#team">Meet the Team</a>
+          </div>
+        </div>
+        <a href="faq.html">FAQ</a>
+        <div class="nav-stack">
+          <a class="nav-cta" href="meetandgreet.html">Book A Meet & Greet</a>
+          <a class="nav-subcta" href="portal.html">Pet Parent Portal</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <div class="content-shell">
+      <section class="page-card">
+        <span class="eyebrow">Services</span>
+        <h1 class="section-title">Flexible pet care for busy Davis pet parents</h1>
+        <p class="section-copy">
+          Every service is designed around safety, communication, and a calmer experience for your pet in Davis, CA.
+        </p>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-head">
+              <h3>Dog Daycare</h3>
+              <span class="service-price">$44/day</span>
+            </div>
+            <p>
+              Structured daytime care in a home setting with potty breaks, supervision, play, rest time, and photo
+              updates throughout the day.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-head">
+              <h3>Dog Boarding</h3>
+              <span class="service-price">$67/night</span>
+            </div>
+            <p>
+              Overnight care for dogs who do best with a personal home environment, regular routines, and close
+              attention instead of a crowded kennel setup.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-head">
+              <h3>Dog Walking <button class="inline-info service-info" type="button" id="extendedRatesOpenWalking" aria-label="View dog walking extended rates">!</button></h3>
+              <span class="service-price">$25/walk</span>
+            </div>
+            <p>
+              Reliable 30-minute neighborhood walks focused on exercise, enrichment, and consistency for dogs who need
+              a midday break or extra movement.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-head">
+              <h3>Pet Drop-In <button class="inline-info service-info" type="button" id="extendedRatesOpenDropIn" aria-label="View pet drop-in extended rates">!</button></h3>
+              <span class="service-price">$25/visit</span>
+            </div>
+            <p>
+              Quick but attentive 30-minute home visits for feeding, potty breaks, water refresh, medication routines,
+              and check-ins while you are away.
+            </p>
+          </article>
+        </div>
+
+        <div class="rates-note">
+          <h3>Additional Rates</h3>
+          <p>Second dog is 30% off the base rate for the same booking.</p>
+          <p>Holiday rates <button class="inline-info" type="button" id="holidayRatesOpen" aria-label="View holiday rate details">!</button></p>
+        </div>
+
+        <div class="availability-card" id="availability">
+          <div class="availability-head">
+            <span class="eyebrow">Availability</span>
+            <div class="availability-toolbar">
+              <h3 id="availabilityMonth">March 2026</h3>
+              <div class="availability-controls" aria-label="Calendar month controls">
+                <button class="availability-nav" id="availabilityPrev" type="button" aria-label="Previous month">&#8249;</button>
+                <button class="availability-nav" id="availabilityNext" type="button" aria-label="Next month">&#8250;</button>
+              </div>
+            </div>
+          </div>
+          <div class="availability-legend" aria-label="Availability legend">
+            <span><i class="availability-swatch availability-swatch-open"></i>Available</span>
+            <span><i class="availability-swatch availability-swatch-closed"></i>Not available</span>
+          </div>
+          <div class="availability-calendar" aria-live="polite">
+            <div class="availability-weekdays" aria-hidden="true">
+              <span>S</span>
+              <span>M</span>
+              <span>T</span>
+              <span>W</span>
+              <span>T</span>
+              <span>F</span>
+              <span>S</span>
+            </div>
+            <div class="availability-grid" id="availabilityGrid"></div>
+          </div>
+          <div class="availability-updated">
+            <span class="availability-check">&#10003;</span>
+            <span id="availabilityUpdated">Calendar last updated recently</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="modal-backdrop" id="holidayRatesModal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="holidayRatesTitle">
+          <div class="modal-header">
+            <button class="modal-back" type="button" id="holidayRatesCloseTop" aria-label="Close holiday rates">&#8592;</button>
+            <h2 id="holidayRatesTitle">Holiday Rate</h2>
+          </div>
+          <div class="modal-body">
+            <p>
+              Due to the high demand for pet-sitting services during the holiday season, stays that include any of the
+              following dates will be priced at the holiday rate:
+            </p>
+            <ul class="modal-list">
+              <li>May 22-25, 2026</li>
+              <li>Jun 19-21, 2026</li>
+              <li>Jul 3-5, 2026</li>
+              <li>Sep 4-7, 2026</li>
+              <li>Nov 26-29, 2026</li>
+              <li>Dec 24, 2026 - Jan 3, 2027</li>
+            </ul>
+            <div class="modal-rates">
+              <p>Daycare: $64/day</p>
+              <p>Boarding: $87/night</p>
+              <p>Dog Walking: $30/walk</p>
+              <p>Pet Drop-In: $30/visit</p>
+            </div>
+          </div>
+          <button class="modal-close" type="button" id="holidayRatesCloseBottom">Close</button>
+        </div>
+      </div>
+
+      <div class="modal-backdrop" id="walkingRatesModal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="walkingRatesTitle">
+          <div class="modal-header">
+            <button class="modal-back" type="button" id="walkingRatesCloseTop" aria-label="Close dog walking rates">&#8592;</button>
+            <h2 id="walkingRatesTitle">Dog Walking Rates</h2>
+          </div>
+          <div class="modal-body">
+            <p>Standard dog walking bookings are 30 minutes. Longer sessions are also available:</p>
+            <div class="modal-rates">
+              <p>Dog Walking: 60 minutes for $40</p>
+            </div>
+          </div>
+          <button class="modal-close" type="button" id="walkingRatesCloseBottom">Close</button>
+        </div>
+      </div>
+
+      <div class="modal-backdrop" id="dropInRatesModal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="dropInRatesTitle">
+          <div class="modal-header">
+            <button class="modal-back" type="button" id="dropInRatesCloseTop" aria-label="Close pet drop-in rates">&#8592;</button>
+            <h2 id="dropInRatesTitle">Pet Drop-In Rates</h2>
+          </div>
+          <div class="modal-body">
+            <p>Standard pet drop-in bookings are 30 minutes. Longer sessions are also available:</p>
+            <div class="modal-rates">
+              <p>Pet Drop-In: 60 minutes for $40</p>
+            </div>
+          </div>
+          <button class="modal-close" type="button" id="dropInRatesCloseBottom">Close</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (async () => {
+      const monthLabel = document.getElementById("availabilityMonth");
+      const grid = document.getElementById("availabilityGrid");
+      const previousButton = document.getElementById("availabilityPrev");
+      const nextButton = document.getElementById("availabilityNext");
+      const updatedLabel = document.getElementById("availabilityUpdated");
+      if (!monthLabel || !grid || !previousButton || !nextButton || !updatedLabel) return;
+
+      let months = [];
+      try {
+        const response = await fetch("availability.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("Unable to load availability data");
+        const data = await response.json();
+        months = Array.isArray(data.months) ? data.months : [];
+        updatedLabel.textContent = `Calendar last updated ${data.lastUpdated || "recently"}`;
+      } catch (error) {
+        updatedLabel.textContent = "Calendar update unavailable";
+      }
+
+      if (!months.length) return;
+
+      let currentIndex = 0;
+
+      function getMonthDate(month) {
+        const [monthName, yearText] = month.label.split(" ");
+        return new Date(`${monthName} 1, ${yearText}`);
+      }
+
+      function isPastDate(month, day) {
+        const monthDate = getMonthDate(month);
+        const today = new Date();
+        const current = new Date(monthDate.getFullYear(), monthDate.getMonth(), day);
+        current.setHours(0, 0, 0, 0);
+        today.setHours(0, 0, 0, 0);
+        return current < today;
+      }
+
+      function renderMonth() {
+        const month = months[currentIndex];
+        monthLabel.textContent = month.label;
+        grid.innerHTML = "";
+
+        for (let i = 0; i < month.startDay; i += 1) {
+          const emptyCell = document.createElement("span");
+          emptyCell.className = "availability-day availability-day-empty";
+          emptyCell.setAttribute("aria-hidden", "true");
+          grid.appendChild(emptyCell);
+        }
+
+        for (let day = 1; day <= month.totalDays; day += 1) {
+          const dayCell = document.createElement("span");
+          dayCell.className = "availability-day";
+          dayCell.textContent = String(day);
+          if (month.available.includes(day) && !isPastDate(month, day)) {
+            dayCell.classList.add("is-available");
+            dayCell.setAttribute("aria-label", `${month.label} ${day} available`);
+          } else {
+            dayCell.classList.add("is-unavailable");
+            dayCell.setAttribute("aria-label", `${month.label} ${day} not available`);
+          }
+          grid.appendChild(dayCell);
+        }
+      }
+
+      previousButton.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + months.length) % months.length;
+        renderMonth();
+      });
+
+      nextButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % months.length;
+        renderMonth();
+      });
+
+      renderMonth();
+    })();
+  </script>
+  <script>
+    (() => {
+      const modal = document.getElementById("holidayRatesModal");
+      const openButtons = [document.getElementById("holidayRatesOpen")].filter(Boolean);
+      const closeButtons = [
+        document.getElementById("holidayRatesCloseTop"),
+        document.getElementById("holidayRatesCloseBottom")
+      ].filter(Boolean);
+      if (!modal || !openButtons.length || !closeButtons.length) return;
+
+      function openModal() {
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+      }
+
+      openButtons.forEach((button) => {
+        button.addEventListener("click", openModal);
+      });
+
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", closeModal);
+      });
+
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !modal.hidden) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const modalConfigs = [
+        {
+          modal: document.getElementById("walkingRatesModal"),
+          open: document.getElementById("extendedRatesOpenWalking"),
+          closeTop: document.getElementById("walkingRatesCloseTop"),
+          closeBottom: document.getElementById("walkingRatesCloseBottom")
+        },
+        {
+          modal: document.getElementById("dropInRatesModal"),
+          open: document.getElementById("extendedRatesOpenDropIn"),
+          closeTop: document.getElementById("dropInRatesCloseTop"),
+          closeBottom: document.getElementById("dropInRatesCloseBottom")
+        }
+      ].filter((config) => config.modal && config.open && config.closeTop && config.closeBottom);
+
+      if (!modalConfigs.length) return;
+
+      function openModal(modal) {
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal(modal) {
+        modal.hidden = true;
+        if (!modalConfigs.some((config) => !config.modal.hidden)) {
+          document.body.classList.remove("modal-open");
+        }
+      }
+
+      modalConfigs.forEach((config) => {
+        config.open.addEventListener("click", () => openModal(config.modal));
+        config.closeTop.addEventListener("click", () => closeModal(config.modal));
+        config.closeBottom.addEventListener("click", () => closeModal(config.modal));
+        config.modal.addEventListener("click", (event) => {
+          if (event.target === config.modal) {
+            closeModal(config.modal);
+          }
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          modalConfigs.forEach((config) => {
+            if (!config.modal.hidden) {
+              closeModal(config.modal);
+            }
+          });
+        }
+      });
+    })();
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>
