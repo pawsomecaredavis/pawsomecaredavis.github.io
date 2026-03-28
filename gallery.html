@@ -59,15 +59,9 @@
         </div>
 
         <section class="gallery-carousel-section" aria-label="Gallery highlights">
-          <article class="gallery-story-note gallery-story-note-large">
-            <h2>Comfort in the details</h2>
-            <p>
-              Small-group care, consistent routines, and a home environment designed to help dogs feel settled and safe.
-            </p>
-          </article>
-
-          <div class="gallery-carousel-center">
-            <div class="gallery-carousel-shell">
+          <div class="gallery-carousel-center gallery-carousel-center-stack">
+            <div class="gallery-carousel-shell gallery-stack-shell">
+              <button class="review-arrow gallery-stack-arrow gallery-stack-arrow-left" type="button" data-gallery-prev aria-label="Previous photo">&#8249;</button>
               <div class="gallery-carousel-track" data-gallery-track>
               <figure class="gallery-slide">
                 <img src="images/gallery/IMG_0053.JPG" alt="Three dogs relaxing together at Pawsome Care">
@@ -154,20 +148,12 @@
                 <img src="images/gallery/cf959a15375feeaecaa0d39d15789350.jpeg" alt="Dog photo from Pawsome Care">
               </figure>
               </div>
-            </div>
-            <div class="gallery-carousel-controls">
-              <button class="review-arrow" type="button" data-gallery-prev aria-label="Previous photo">&#8249;</button>
-              <button class="review-arrow" type="button" data-gallery-next aria-label="Next photo">&#8250;</button>
+              <button class="review-arrow gallery-stack-arrow gallery-stack-arrow-right" type="button" data-gallery-next aria-label="Next photo">&#8250;</button>
             </div>
             <div class="review-dots" data-gallery-dots></div>
           </div>
 
-          <article class="gallery-story-note gallery-story-note-large">
-            <h2>Play, rest, repeat</h2>
-            <p>
-              Some dogs come for social time, others for a slower pace, and both are given space to settle in naturally.
-            </p>
-          </article>
+
         </section>
 
         <section class="gallery-about-strip" aria-label="Know more about us">
@@ -266,7 +252,21 @@
       }
 
       function update() {
-        track.style.transform = `translateX(-${index * 100}%)`;
+        slides.forEach((slide, i) => {
+          slide.classList.remove("is-active", "is-prev", "is-next", "is-far-prev", "is-far-next");
+
+          const prevIndex = (index - 1 + slides.length) % slides.length;
+          const nextIndex = (index + 1) % slides.length;
+          const farPrevIndex = (index - 2 + slides.length) % slides.length;
+          const farNextIndex = (index + 2) % slides.length;
+
+          if (i === index) slide.classList.add("is-active");
+          if (i === prevIndex) slide.classList.add("is-prev");
+          if (i === nextIndex) slide.classList.add("is-next");
+          if (i === farPrevIndex) slide.classList.add("is-far-prev");
+          if (i === farNextIndex) slide.classList.add("is-far-next");
+        });
+
         const dotButtons = dots.querySelectorAll(".review-dot");
         dotButtons.forEach((dot, i) => {
           dot.classList.toggle("is-active", i === index);
@@ -349,3 +349,4 @@
   </script>
 </body>
 </html>
+

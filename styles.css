@@ -469,13 +469,94 @@ button:focus-visible {
 
 .gallery-carousel-section {
   display: grid;
-  grid-template-columns: 1fr minmax(0, 1.25fr) 1fr;
   gap: 22px;
-  align-items: stretch;
+  justify-items: center;
 }
 
-.gallery-carousel-section > * {
+.gallery-carousel-center {
+  display: grid;
+  gap: 16px;
+  align-items: center;
   min-width: 0;
+  justify-items: center;
+}
+
+.gallery-carousel-center-stack {
+  width: 100%;
+  justify-items: center;
+}
+
+.gallery-stack-shell {
+  position: relative;
+  width: min(760px, 100%);
+  min-height: 500px;
+  margin: 0 auto;
+  overflow: visible;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.gallery-carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-slide {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(520px, 72%);
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.gallery-slide img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 10px solid #fffdf9;
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(85, 60, 38, 0.22);
+}
+
+.gallery-slide.is-active {
+  opacity: 1;
+  z-index: 5;
+  transform: translateX(-50%) scale(1);
+}
+
+.gallery-slide.is-prev,
+.gallery-slide.is-next {
+  opacity: 1;
+  z-index: 4;
+}
+
+.gallery-slide.is-prev {
+  transform: translateX(calc(-50% - 230px)) scale(0.82);
+}
+
+.gallery-slide.is-next {
+  transform: translateX(calc(-50% + 230px)) scale(0.82);
+}
+
+.gallery-slide.is-far-prev,
+.gallery-slide.is-far-next {
+  opacity: 0.7;
+  z-index: 3;
+}
+
+.gallery-slide.is-far-prev {
+  transform: translateX(calc(-50% - 360px)) scale(0.68);
+}
+
+.gallery-slide.is-far-next {
+  transform: translateX(calc(-50% + 360px)) scale(0.68);
 }
 
 .gallery-carousel-controls {
@@ -484,58 +565,46 @@ button:focus-visible {
   gap: 12px;
 }
 
-.gallery-carousel-center {
+.gallery-stack-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+}
+
+.gallery-stack-arrow-left {
+  left: 10px;
+}
+
+.gallery-stack-arrow-right {
+  right: 10px;
+}
+
+.gallery-stack-notes {
   display: grid;
-  gap: 16px;
-  align-items: start;
-  min-width: 0;
-}
-
-.gallery-carousel-shell {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
   width: 100%;
-  overflow: hidden;
-  border-radius: 28px;
-  border: 1px solid rgba(111, 98, 86, 0.14);
-  background: rgba(255, 255, 255, 0.74);
-  box-shadow: var(--shadow);
-}
-
-.gallery-carousel-track {
-  display: flex;
-  width: 100%;
-  max-width: 100%;
-  flex-wrap: nowrap;
-  transition: transform 0.45s ease;
-  will-change: transform;
-}
-
-.gallery-slide {
-  flex: 0 0 100%;
-  margin: 0;
-  min-width: 0;
-}
-
-.gallery-slide img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
 }
 
 .gallery-story-note-large {
   min-height: 100%;
   padding: 28px 26px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .gallery-story-note-large h2 {
-  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-size: clamp(1.65rem, 2.5vw, 2.05rem);
   line-height: 1.08;
   margin-bottom: 18px;
+  overflow-wrap: anywhere;
 }
 
 .gallery-story-note-large p {
   font-size: 1rem;
   line-height: 1.95;
+  overflow-wrap: anywhere;
 }
 
 .gallery-about-strip {
@@ -1512,7 +1581,7 @@ textarea {
 
   .gallery-hero,
   .gallery-story-row,
-  .gallery-carousel-section,
+  .gallery-stack-notes,
   .gallery-about-grid,
   .gallery-modal-grid {
     grid-template-columns: 1fr;
@@ -1527,13 +1596,20 @@ textarea {
     margin: 0 auto;
   }
 
-  .gallery-carousel-head {
-    display: grid;
-    grid-template-columns: 1fr;
+  .gallery-stack-shell {
+    min-height: 380px;
   }
 
-  .gallery-carousel-controls {
-    justify-content: center;
+  .gallery-slide img {
+    width: 76%;
+  }
+
+  .gallery-stack-arrow-left {
+    left: -2px;
+  }
+
+  .gallery-stack-arrow-right {
+    right: -2px;
   }
 
   .reviews-carousel {
@@ -1623,6 +1699,15 @@ textarea {
 
   .gallery-story-note {
     padding: 20px;
+  }
+
+  .gallery-stack-shell {
+    min-height: 280px;
+  }
+
+  .gallery-slide img {
+    width: 82%;
+    border-width: 8px;
   }
 
   .gallery-modal-grid {
